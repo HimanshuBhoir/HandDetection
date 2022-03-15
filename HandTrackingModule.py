@@ -2,6 +2,8 @@ import cv2
 import mediapipe as mp
 import time
 
+from Handtracking import results
+
 
 class handDetector():
     def __int__(self, mode=False, maxHands=2, detectionCons=0.5, trackCon=0.5):
@@ -18,7 +20,7 @@ class handDetector():
     def findHands(self, img, draw=True):
         imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         results = self.hands.process(imgRGB)
-        if self.results.multi_hand_landmarks:
+        if results.multi_hand_landmarks:
             for handlms in results.multi_hand_landmarks:
                 if draw:
                     self.mpDraw.draw_landmarks(img, handlms,
@@ -28,7 +30,7 @@ class handDetector():
     def findPosition(self, img, handNo=0, draw=True):
 
         lmlist = []
-        if self.results.multi_hand_landmarks:
+        if results.multi_hand_landmarks:
             myHand = self.results.multi_hand_landmarks[handNo]
             for id, lm in enumerate(self.handlms.landmark):
                 h, w, c = img.shape
