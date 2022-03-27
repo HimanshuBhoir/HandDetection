@@ -49,7 +49,7 @@ while True:
         volPer = np.interp(length, [50, 300], [0, 100])
         print(length, vol)
         volume.SetMasterVolumeLevel(vol, None)
-
+ 
     cv2.rectangle(img, (50, 150), (85, 400), (255, 0, 0), 3)
     cv2.rectangle(img, (50, int(volBar)), (85, 400), (255, 0, 0), cv2.FILLED)
     cv2.putText(img, f'{(int(volPer))}', (40, 450), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 0, 0), 3)
